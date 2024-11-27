@@ -1,15 +1,24 @@
 import java.util.Objects;
-public class Departement {
+
+public class Departement implements Comparable<Departement> {
     int id;
     String nom_dep;
     int nb_emp;
 
-    public Departement(){};
-    public Departement(int id,String nom_dep,int nb_emp){
-        this.id=id;
-        this.nom_dep=nom_dep;
-        this.nb_emp=nb_emp;
+    public Departement() {}
+
+    public Departement(int id, String nom_dep, int nb_emp) {
+        this.id = id;
+        this.nom_dep = nom_dep;
+        this.nb_emp = nb_emp;
     }
+
+    public Departement(int id, String nom_dep) {
+        this.id = id;
+        this.nom_dep = nom_dep;
+        this.nb_emp = 0;
+    }
+
     public int getId() {
         return id;
     }
@@ -23,7 +32,7 @@ public class Departement {
     }
 
     public void setNom(String nom) {
-        this.nom_dep = nom_dep;
+        this.nom_dep = nom;
     }
 
     public int getNombreEmployes() {
@@ -34,17 +43,19 @@ public class Departement {
         this.nb_emp = nb_emp;
     }
 
-    // Override equals method (based on id and nom)
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Departement that = (Departement) obj;
-        return id == this.id && Objects.equals(nom_dep, that.nom_dep);
+        return id == that.id && Objects.equals(nom_dep, that.nom_dep);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nom_dep);
+    }
 
-    // Override toString method
     @Override
     public String toString() {
         return "Departement{" +
@@ -53,10 +64,9 @@ public class Departement {
                 ", nombreEmployes=" + nb_emp +
                 '}';
     }
-    public int hashCode() {
-        return Objects.hash(id, nom_dep);}
+
+    @Override
     public int compareTo(Departement d) {
-        return id - d.id;
+        return Integer.compare(this.id, d.id);
     }
 }
-

@@ -1,19 +1,30 @@
-public class Employe implements Comparable<Employe>{
+import java.util.Objects;
 
+public class Employe implements Comparable<Employe> {
     public int id;
     public String nom;
     public String prenom;
     public String nom_dep;
     public int grade;
 
-    public Employe(){};
-    public Employe(int id,String nom,String prenom,String nom_dep,int grade){
-        this.id=id;
-        this.nom=nom;
-        this.prenom=prenom;
-        this.nom_dep=nom_dep;
-        this.grade=grade;
+    public Employe() {}
+
+    public Employe(int id, String nom, String prenom, String nom_dep, int grade) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.nom_dep = nom_dep;
+        this.grade = grade;
     }
+
+    public Employe(int id, String nom) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = "";
+        this.nom_dep = "";
+        this.grade = 0;
+    }
+
     public int getId() {
         return id;
     }
@@ -61,6 +72,12 @@ public class Employe implements Comparable<Employe>{
         Employe employe = (Employe) obj;
         return id == employe.id && nom.equals(employe.nom);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nom);
+    }
+
     @Override
     public String toString() {
         return "Employe{" +
@@ -71,6 +88,8 @@ public class Employe implements Comparable<Employe>{
                 ", grade=" + grade +
                 '}';
     }
+
+    @Override
     public int compareTo(Employe autre) {
         return Integer.compare(this.id, autre.id);
     }
