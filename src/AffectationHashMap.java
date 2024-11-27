@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-// Classe AffectationHashMap
+
 public class AffectationHashMap {
     private HashMap<Employe, Departement> affectations;
 
